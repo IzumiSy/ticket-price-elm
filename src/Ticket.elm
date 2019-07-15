@@ -34,6 +34,10 @@ type
     | Parking
 
 
+
+-- Ticketを表現するOpeque Type
+
+
 type Ticket
     = Ticket Price
 
