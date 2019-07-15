@@ -1,4 +1,4 @@
-module DayType exposing (DayType(..), fromTime)
+module DayType exposing (DayType(..), ensureAll, fromTime)
 
 import Time
 
@@ -9,6 +9,34 @@ type DayType
     | WeekendOrHoliday
     | WeekendOrHolidayLate
     | CinemaDay
+
+
+type alias Payload a =
+    { weekday : DayType -> a
+    , weekdayLate : DayType -> a
+    , weekendOrHoliday : DayType -> a
+    , weekendOrHolidayLate : DayType -> a
+    , cinemaDay : DayType -> a
+    }
+
+
+ensureAll : Payload a -> DayType -> a
+ensureAll { weekday, weekdayLate, weekendOrHoliday, weekendOrHolidayLate, cinemaDay } dayType =
+    case dayType of
+        Weekday ->
+            weekday dayType
+
+        WeekdayLate ->
+            weekdayLate dayType
+
+        WeekendOrHoliday ->
+            weekendOrHoliday dayType
+
+        WeekendOrHolidayLate ->
+            weekendOrHolidayLate dayType
+
+        CinemaDay ->
+            cinemaDay dayType
 
 
 fromTime : Time.Posix -> DayType
