@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "elm reactor",
-    "format": "elm-format ."
+    "format": "elm-format . --yes"
   },
   "author": "",
   "license": "ISC",
