@@ -1,0 +1,16 @@
+{
+  "name": "ticket_price_elm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "elm reactor",
+    "format": "elm-format ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "^0.19.0-no-deps",
+    "elm-format": "^0.8.1"
+  }
+}
