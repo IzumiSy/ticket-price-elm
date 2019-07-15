@@ -1,4 +1,4 @@
-module Ticket exposing (Discount, Ticket)
+module Ticket exposing (CustomerType(..), Discount(..), Ticket, new, toYen)
 
 import DayType exposing (DayType)
 
@@ -24,17 +24,17 @@ type CustomerType
 
 -- Discountは表の中ではカスタマーの区分と同列になっているが
 -- 実際には別区分であるようにみえるので分けた
+-- 夫婦50割はリストには含まれているが終了したためDiscountには含めない
 
 
-type
-    Discount
-    -- 夫婦50割はリストには含まれているが終了したためDiscountには含めない
+type Discount
     = Unspecified
     | MICard -- MIカードは他割引との不可
     | Parking
 
 
 
+-- チケットを表現するOpaque Type
 -- 料金一覧を見ると1000円というのが全体のレギュラープライスに見えるので
 -- レギュラーとそれ以外に分けることとした
 
@@ -45,14 +45,11 @@ type Ticket
     | Special Int
 
 
-
--- TODO:
--- - もし75歳の大学生がいた場合にはどちらの価格が適用されるんだ？
--- - 障害者カスタマの同伴者の割引判断
-
-
 new : DayType -> CustomerType -> Discount -> Ticket
 new dayType customerType discount =
+    -- TODO:
+    -- - もし75歳の大学生がいた場合にはどちらの価格が適用されるんだ？
+    -- - 障害者カスタマの同伴者の割引判断
     case discount of
         MICard ->
             dayType
